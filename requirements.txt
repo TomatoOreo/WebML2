@@ -1,9 +1,9 @@
-python==3.7.13
 ipython
 joblib
 matplotlib==3.5.1
 numpy
 pandas
+setuptools
 scikit_learn==1.0.2
 shap==0.42.1
 streamlit==1.23.1
