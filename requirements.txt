@@ -1,6 +1,6 @@
+python==3.8
 ipython
 joblib
-setuptools
 matplotlib==3.5.1
 numpy
 pandas
