@@ -1,3 +1,4 @@
+ipython
 joblib
 matplotlib==3.5.1
 numpy

@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-
-import matplotlib.pyplot as plt
+from IPython.display import (display, display_html, display_png, display_svg)
+from matplotlib import pyplot
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -63,6 +63,6 @@ if st.button("Predict"):
         shap.force_plot(explainer.expected_value[2], shap_values[2], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     else:
         shap.force_plot(explainer.expected_value[3], shap_values[3], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
-    plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
+    pyplot.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
 
     st.image("shap_force_plot.png")
