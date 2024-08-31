@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from IPython.display import (display, display_html, display_png, display_svg)
 from matplotlib import pyplot
-plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
-plt.rcParams['axes.unicode_minus'] = False
+pyplot.rcParams['font.sans-serif'] = ['Microsoft YaHei']
+pyplot.rcParams['axes.unicode_minus'] = False
 
 from sklearn.ensemble import RandomForestClassifier
 # from pytorch_tabnet.tab_model import TabNetClassifier

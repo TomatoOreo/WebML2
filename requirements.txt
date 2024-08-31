@@ -1,9 +1,8 @@
-ipython
-joblib
-matplotlib==3.5.1
-numpy
-pandas
-distutils
-scikit_learn==1.0.2
+ipython==8.12.3
+joblib==1.4.2
+matplotlib==3.7.2
+numpy==1.24.3
+pandas==2.0.3
+scikit_learn==1.3.0
 shap==0.42.1
-streamlit==1.23.1
+streamlit==1.38.0
