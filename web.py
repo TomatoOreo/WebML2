@@ -66,7 +66,7 @@ for i, demographic_indicator in enumerate(demographic_indicators):
 
 
 st.subheader("clinical score")
-col21, col22 = st.columns(2)
+col21, col22, col23, col24 = st.columns(4)
 with col21:
     input_value = st.number_input(f"{clinical_score[0]}:")
     feature_values.append(input_value)   
