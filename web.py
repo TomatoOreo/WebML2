@@ -30,65 +30,127 @@ blood_indicators = ['Hemoglobin','Platelet','Leukocytes', 'Neutrophils','Lymphoc
  'Peak troponin I']
 # 超声指标 4
 echocardiographic_indicators = ['LVEF','Left atrial diameter','LVEDD','Hospitalization days']
-# 人口学指标 16
-demographic_indicators = ['BMI','Sex','Age','GRACE risk score','TIMI risk score','History of smoking','No quitting smoking',
+# 人口学指标 3
+demographic_indicators = ['BMI','Sex','Age']
+# 临床分数 2
+clinical_score = ['GRACE risk score','TIMI risk score']
+# 既往史 11 
+medical_history = ['History of smoking','No quitting smoking',
  'History of hypertension','History of diabetes','History of hyperlipemia','History of CVD','History of PU','History of myocardial infarction',
  'History of stent implantation','History of CABG','History of AF']
+
 # Streamlit user interface
 st.title("KILLIP Predictor")
 
-col1, col2 = st.columns(2)
 input_values = {}  
 feature_values = []
-with col1:
-    st.subheader("demographic indicators")
-    col3, col4 = st.columns(2)
-    for i, demographic_indicator in enumerate(demographic_indicators):
-        if i % 2 == 0:
-            with col4:
-                input_value = st.number_input(f"{demographic_indicator}:")
+
+st.subheader("demographic indicators") 
+col11, col12, col13, col14 = st.columns(4) 
+for i, demographic_indicator in enumerate(demographic_indicators):
+    if i == 0:
+        with col11:
+            input_value = st.number_input(f"{demographic_indicator}:")
+            feature_values.append(input_value)
+            input_values[demographic_indicator] = input_value 
+    elif i == 1:
+        with col12:
+            input_value = st.number_input(f"{demographic_indicator}:")
+            feature_values.append(input_value)
+            input_values[demographic_indicator] = input_value 
+    elif i == 2:
+        with col13:
+            input_value = st.number_input(f"{demographic_indicator}:")
+            feature_values.append(input_value)
+            input_values[demographic_indicator] = input_value
+
+
+st.subheader("clinical score")
+col21, col22 = st.columns(2)
+with col21:
+    input_value = st.number_input(f"{clinical_score[0]}:")
+    feature_values.append(input_value)   
+    input_values[clinical_score[0]] = input_value
+with col22:
+    input_value = st.number_input(f"{clinical_score[1]}:")
+    feature_values.append(input_value)   
+    input_values[clinical_score[1]] = input_value
+
+
+st.subheader("medical history")
+col31, col32, col33, col34 = st.columns(4)
+for i, medical_his in enumerate(medical_history):
+    if i in [0, 4, 8, 12]:
+        with col31:
+            input_value = st.number_input(f"{medical_his}:")
+            feature_values.append(input_value)
+            input_values[medical_his] = input_value 
+    elif i in [1, 5, 9]:
+        with col32:
+            input_value = st.number_input(f"{medical_his}:")
+            feature_values.append(input_value)
+            input_values[medical_his] = input_value 
+    elif i in [2, 6, 10]:
+        with col33:
+            input_value = st.number_input(f"{medical_his}:")
+            feature_values.append(input_value)
+            input_values[medical_his] = input_value
+    else:
+        with col34:
+            input_value = st.number_input(f"{medical_his}:")
+            feature_values.append(input_value)
+            input_values[medical_his] = input_value
+            
+st.subheader("blood indicators") 
+col41, col42, col43, col44 = st.columns(4) 
+for i, blood_indicator in enumerate(blood_indicators):
+    if i in [0, 4, 8, 12, 16, 20]:
+        with col41:
+            input_value = st.number_input(f"{blood_indicator}:")
+            feature_values.append(input_value)
+            input_values[blood_indicator] = input_value 
+    elif i in [1, 5, 9, 13, 17]:
+        with col42:
+            input_value = st.number_input(f"{blood_indicator}:")
+            feature_values.append(input_value)
+            input_values[blood_indicator] = input_value 
+    elif i in [2, 6, 10, 14, 18]:
+        with col43:
+            input_value = st.number_input(f"{blood_indicator}:")
+            feature_values.append(input_value)
+            input_values[blood_indicator] = input_value
+    else:
+        with col44:
+            input_value = st.number_input(f"{blood_indicator}:")
+            feature_values.append(input_value)
+            input_values[blood_indicator] = input_value  
+
+col5, col6 = st.columns([0.75, 0.25])
+with col5:
+    st.subheader("echocardiographic indicators") 
+    col51, col52, col53 = st.columns(3) 
+    for i, echocardiographic_indicator in enumerate(echocardiographic_indicators):
+        if i == 0:
+            with col51:
+                input_value = st.number_input(f"{echocardiographic_indicator}:")
                 feature_values.append(input_value)
-                input_values[demographic_indicator] = input_value 
-        else:
-            with col3:
-                input_value = st.number_input(f"{demographic_indicator}:")
+                input_values[echocardiographic_indicator] = input_value 
+        elif i == 1:
+            with col52:
+                input_value = st.number_input(f"{echocardiographic_indicator}:")
                 feature_values.append(input_value)
-                input_values[demographic_indicator] = input_value 
-with col2:
-    st.subheader("blood indicators")
-    col5, col6 = st.columns(2)
-    for i, blood_indicator in enumerate(blood_indicators):
-        if i % 2 == 0:
-            with col6:
-                input_value = st.number_input(f"{blood_indicator}:")
+                input_values[echocardiographic_indicator] = input_value 
+        elif i == 2:
+            with col53:
+                input_value = st.number_input(f"{echocardiographic_indicator}:")
                 feature_values.append(input_value)
-                input_values[blood_indicator] = input_value 
-        else:
-            with col5:
-                input_value = st.number_input(f"{blood_indicator}:")
-                feature_values.append(input_value)
-                input_values[blood_indicator] = input_value 
-col7, col8 = st.columns([0.75, 0.25])
-with col7:
-    st.subheader("echocardiographic indicators")
-    col9, col10, col11 = st.columns(3)
-    with col9:
-        input_value = st.number_input(f"{echocardiographic_indicators[0]}:")
-        feature_values.append(input_value)
-        input_values[echocardiographic_indicators[0]] = input_value 
-    with col10:
-        input_value = st.number_input(f"{echocardiographic_indicators[1]}:")
-        feature_values.append(input_value)
-        input_values[echocardiographic_indicators[1]] = input_value
-    with col11:
-        input_value = st.number_input(f"{echocardiographic_indicators[2]}:")
-        feature_values.append(input_value) 
-        input_values[echocardiographic_indicators[2]] = input_value 
-with col8:
+                input_values[echocardiographic_indicator] = input_value 
+with col6:
     st.subheader("other")   
     input_value = st.number_input(f"{echocardiographic_indicators[3]}:")
     feature_values.append(input_value)   
-    input_values[echocardiographic_indicators[3]] = input_value
+    input_values[echocardiographic_indicators[3]] = input_value                                      
+
 
 feature_final = []
 for i, feature in enumerate(feature_names): 
